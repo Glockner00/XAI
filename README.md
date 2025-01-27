@@ -112,12 +112,7 @@ git push
 ### **After Finishing a Session**
 
 1. **Save and Commit Your Changes**:
-   Save your work and commit changes to Git:
-   ```cmd
-   git add .
-   git commit -m "message"
-   git push
-   ```
+   
 2. **Deactivate the Conda Environment**:
    Deactivate the environment to avoid conflicts:
    ```cmd
