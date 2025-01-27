@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document provides step-by-step instructions on setting up and using Conda and Jupyter Notebook to work with this project. It includes guidance on creating and activating Conda environments, installing dependencies, and running Jupyter Notebooks. This ensures reproducibility and ease of collaboration for all contributors.
+This document provides step-by-step instructions on setting up and using Conda and Jupyter Notebook to work with this project.
 
 ---
 
@@ -15,17 +15,7 @@ Ensure you have the following installed on your system:
    - [Download Anaconda](https://www.anaconda.com/products/distribution) for a full-featured environment.
    - Alternatively, install [Miniconda](https://docs.conda.io/en/latest/miniconda.html) for a lightweight setup.
 
-2. **Git**:
-
-   - Install Git to clone the project repository:
-     - **Linux**:
-       ```bash
-       sudo apt install git
-       ```
-     - **Windows**:
-       Download Git from [git-scm.com](https://git-scm.com/) and follow the installation instructions.
-
-3. **Jupyter Notebook**:
+2. **Jupyter Notebook**:
    - Installed within the Conda environment.
 
 ---
@@ -37,8 +27,7 @@ Ensure you have the following installed on your system:
 Clone this Git repository to your local machine:
 
 ```bash
-git clone <repository-url>
-cd <repository-name>
+git clone git@github.com:Glockner00/XAI.git && cd XAI
 ```
 
 ---
@@ -62,12 +51,11 @@ cd <repository-name>
      conda activate my_project_env
      ```
 
-3. **Install the required dependencies**:
-   Install the dependencies listed below:
+3. **Recreate the Environment from environment.yml**:
+   If the `environment.yml` file is already in the repository, recreate the environment:
 
    ```bash
-   conda install numpy pandas matplotlib tensorflow pytorch -c pytorch
-   pip install shap lime scikit-learn notebook
+   conda env create -f environment.yml
    ```
 
 4. **Verify the installation**:
@@ -78,9 +66,9 @@ cd <repository-name>
 
 ---
 
-### Step 3: Export the Conda Environment (Optional)
+### Step 3: Export the Conda Environment (If Changes Are Made)
 
-If you make changes to the environment, update the `environment.yml` file to share the environment with others:
+If you make changes to the environment (e.g., installing additional packages), update the `environment.yml` file to share the environment with others:
 
 ```bash
 conda env export > environment.yml
@@ -124,6 +112,66 @@ git push
 1. Navigate to the notebook file in the project directory (if any) or create a new notebook.
 2. Select the kernel for your Conda environment (`Python (my_project_env)`) from the dropdown menu.
 3. Run cells to test or execute the project code.
+
+---
+
+## Workflow: Before, During, and After Working on the Project
+
+### **Before Starting a Session**
+
+1. **Pull the Latest Changes**:
+   Ensure your local repository is up to date:
+   ```bash
+   git pull origin main
+   ```
+2. **Activate the Conda Environment**:
+   Activate the Conda environment for the project:
+   - **Linux/Mac**:
+     ```bash
+     conda activate my_project_env
+     ```
+   - **Windows**:
+     ```cmd
+     conda activate my_project_env
+     ```
+3. **Start Jupyter Notebook**:
+   Launch Jupyter Notebook in the project directory:
+   ```bash
+   jupyter notebook
+   ```
+
+### **During the Session**
+
+1. **Work on Code or Notebooks**:
+   - Ensure you are using the correct kernel (`Python (my_project_env)`) in Jupyter Notebook.
+   - Save your work regularly.
+2. **Test Changes**:
+   Run and test your code to ensure functionality.
+3. **Document Changes**:
+   Keep notes on what you are modifying or add comments in the code for clarity.
+
+### **After Finishing a Session**
+
+1. **Save and Commit Your Changes**:
+   Save your work and commit changes to Git:
+   ```bash
+   git add .
+   git commit -m "Describe your changes"
+   git push origin main
+   ```
+2. **Deactivate the Conda Environment**:
+   Deactivate the environment to avoid conflicts:
+   ```bash
+   conda deactivate
+   ```
+3. **Export Updated Environment (if needed)**:
+   If you added new dependencies, update the `environment.yml` file:
+   ```bash
+   conda env export > environment.yml
+   git add environment.yml
+   git commit -m "Update environment dependencies"
+   git push
+   ```
 
 ---
 
@@ -204,5 +252,4 @@ To recreate the environment on another system:
 
 ---
 
-This README ensures anyone collaborating on the project can set up the environment and run the code successfully. For further questions, reach out to the project maintainer.
-
+This README ensures anyone collaborating on the project can set up the environment, follow the workflow, and run the code successfully. For further questions, reach out to the project maintainer.
