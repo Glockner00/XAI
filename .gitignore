@@ -1,0 +1,4 @@
+# Conda-specific directories
+.conda/
+.env/
+
